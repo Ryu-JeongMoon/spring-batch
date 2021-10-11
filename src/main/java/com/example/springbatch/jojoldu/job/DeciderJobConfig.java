@@ -1,4 +1,4 @@
-package com.example.springbatch.job;
+package com.example.springbatch.jojoldu.job;
 
 import java.util.Random;
 import lombok.RequiredArgsConstructor;

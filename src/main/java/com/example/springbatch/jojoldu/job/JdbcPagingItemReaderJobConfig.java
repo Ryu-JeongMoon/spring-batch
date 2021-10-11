@@ -1,12 +1,11 @@
-package com.example.springbatch.job;
+package com.example.springbatch.jojoldu.job;
 
-import com.example.springbatch.jdbc.Pay;
+import com.example.springbatch.jojoldu.jdbc.Pay;
 import java.util.HashMap;
 import java.util.Map;
 import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;

@@ -1,4 +1,4 @@
-package com.example.springbatch.jdbc;
+package com.example.springbatch.jojoldu.jdbc;
 
 
 import java.time.LocalDateTime;

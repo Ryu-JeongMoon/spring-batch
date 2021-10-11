@@ -1,6 +1,6 @@
-package com.example.springbatch.job;
+package com.example.springbatch.jojoldu.job;
 
-import com.example.springbatch.jdbc.Pay;
+import com.example.springbatch.jojoldu.jdbc.Pay;
 import javax.persistence.EntityManagerFactory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
