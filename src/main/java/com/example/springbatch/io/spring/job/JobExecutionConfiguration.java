@@ -1,4 +1,4 @@
-package com.example.springbatch.io.job;
+package com.example.springbatch.io.spring.job;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -16,37 +16,48 @@ import org.springframework.context.annotation.Configuration;
 @Log4j2
 @Configuration
 @RequiredArgsConstructor
-public class StepConfiguration {
+public class JobExecutionConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
 
     @Bean
-    public Job batchJob() {
-        return jobBuilderFactory.get("batchJob")
-            .start(batchStep1())
-            .next(batchStep2())
+    public Job executionJob() {
+        return jobBuilderFactory.get("executionJob")
+            .start(executionStep1())
+            .next(executionStep2())
+            .next(executionStep3())
             .build();
     }
 
     @Bean
-    public Step batchStep1() {
-        return stepBuilderFactory.get("batchStep1")
+    public Step executionStep1() {
+        return stepBuilderFactory.get("executionStep1")
             .tasklet(new Tasklet() {
                 @Override
                 public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-                    log.info("================================");
-                    log.info("======Hello Spring Batch!======");
-                    log.info("================================");
-
+                    log.info("executionStep1 executed");
                     return RepeatStatus.FINISHED;
                 }
             }).build();
     }
 
     @Bean
-    public Step batchStep2() {
-        return stepBuilderFactory.get("batchStep2")
-            .tasklet(new CustomTasklet()).build();
+    public Step executionStep2() {
+        return stepBuilderFactory.get("executionStep2")
+            .tasklet((contribution, chunkContext) -> {
+                log.info("executionStep2 executed");
+//                throw new RuntimeException("step 2 failed");
+                return RepeatStatus.FINISHED;
+            }).build();
+    }
+
+    @Bean
+    public Step executionStep3() {
+        return stepBuilderFactory.get("executionStep3")
+            .tasklet((contribution, chunkContext) -> {
+                log.info("executionStep3 executed");
+                return RepeatStatus.FINISHED;
+            }).build();
     }
 }

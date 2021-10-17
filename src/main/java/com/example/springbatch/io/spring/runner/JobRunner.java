@@ -1,4 +1,4 @@
-package com.example.springbatch.io.runner;
+package com.example.springbatch.io.spring.runner;
 
 import java.util.Date;
 import lombok.RequiredArgsConstructor;

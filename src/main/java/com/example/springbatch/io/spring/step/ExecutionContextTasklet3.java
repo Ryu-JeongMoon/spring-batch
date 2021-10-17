@@ -1,4 +1,4 @@
-package com.example.springbatch.io.job;
+package com.example.springbatch.io.spring.step;
 
 import lombok.extern.log4j.Log4j2;
 import org.springframework.batch.core.StepContribution;
@@ -10,22 +10,19 @@ import org.springframework.stereotype.Component;
 
 @Log4j2
 @Component
-public class ExecutionContextTasklet2 implements Tasklet {
+public class ExecutionContextTasklet3 implements Tasklet {
 
     @Override
     public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
-        log.info("tasklet2 executed");
+        log.info("tasklet3 executed");
 
-        ExecutionContext stepExecutionContext = contribution.getStepExecution().getExecutionContext();
-        log.info("stepExecutionContext.stepName = {}", stepExecutionContext.get("stepName"));
+        ExecutionContext jobExecutionContext = chunkContext.getStepContext().getStepExecution().getJobExecution()
+            .getExecutionContext();
 
-        String stepName = chunkContext.getStepContext().getStepName();
-
-        if (stepExecutionContext.get("stepName") == null) {
-            stepExecutionContext.put("stepName", stepName);
+        if (jobExecutionContext.get("name") == null) {
+            jobExecutionContext.put("name", "user");
+//            throw new RuntimeException("tasklet3 was failed");
         }
-
-        log.info("stepName = {}", stepName);
 
         return RepeatStatus.FINISHED;
     }

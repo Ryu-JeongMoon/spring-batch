@@ -1,7 +1,8 @@
-package com.example.springbatch.io.job;
+package com.example.springbatch.io.spring.job_repository;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
+import org.springframework.batch.core.JobExecutionListener;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.StepContribution;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
@@ -14,23 +15,24 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class HelloJobConfiguration {
+public class JobRepositoryConfiguration {
 
     private final JobBuilderFactory jobBuilderFactory;
     private final StepBuilderFactory stepBuilderFactory;
+    private final JobExecutionListener jobRepositoryListener;
 
     @Bean
-    public Job helloJob() {
-        return jobBuilderFactory.get("helloJob")
-            .start(helloStep1())
-            .next(helloStep2())
-            .next(helloStep3())
+    public Job repositoryJob() {
+        return jobBuilderFactory.get("repositoryJob")
+            .start(repositoryStep1())
+            .next(repositoryStep2())
+            .next(repositoryStep3())
             .build();
     }
 
     @Bean
-    public Step helloStep1() {
-        return stepBuilderFactory.get("helloStep1")
+    public Step repositoryStep1() {
+        return stepBuilderFactory.get("repositoryStep1")
             .tasklet(new Tasklet() {
                 @Override
                 public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
@@ -44,8 +46,8 @@ public class HelloJobConfiguration {
     }
 
     @Bean
-    public Step helloStep2() {
-        return stepBuilderFactory.get("helloStep2")
+    public Step repositoryStep2() {
+        return stepBuilderFactory.get("repositoryStep2")
             .tasklet(new Tasklet() {
                 @Override
                 public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext) throws Exception {
@@ -59,11 +61,11 @@ public class HelloJobConfiguration {
     }
 
     @Bean
-    public Step helloStep3() {
-        return stepBuilderFactory.get("helloStep3")
+    public Step repositoryStep3() {
+        return stepBuilderFactory.get("repositoryStep3")
             .tasklet((contribution, chunkContext) -> {
                 System.out.println("================================");
-                System.out.println("======Hello Spring Batch!!======");
+                System.out.println("======Hello Spring Batch!!!======");
                 System.out.println("================================");
 
                 return RepeatStatus.FINISHED;

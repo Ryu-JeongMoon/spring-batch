@@ -1,0 +1,15 @@
+### Send Sync POST request
+POST http://localhost:8080/sync
+Content-Type: application/json
+
+{
+  "id": 1
+}
+
+### Send Async POST request
+POST http://localhost:8080/async
+Content-Type: application/json
+
+{
+  "id": 4
+}
