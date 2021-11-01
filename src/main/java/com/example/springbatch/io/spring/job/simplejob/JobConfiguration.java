@@ -1,4 +1,4 @@
-package com.example.springbatch.io.spring.job;
+package com.example.springbatch.io.spring.job.simplejob;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;

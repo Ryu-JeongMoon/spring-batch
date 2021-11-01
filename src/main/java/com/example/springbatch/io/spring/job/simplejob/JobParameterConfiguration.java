@@ -1,4 +1,4 @@
-package com.example.springbatch.io.spring.job;
+package com.example.springbatch.io.spring.job.simplejob;
 
 import java.util.Date;
 import lombok.RequiredArgsConstructor;
